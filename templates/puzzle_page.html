@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+	<head>
+		<title>{{puzzle.name}}</title>
+	</head>
+	<body>
+		<h1><a href="{{url_for("puzzle_list")}}">CPC Simulator 2016</a> / {{puzzle.name}}</h1>
+		<table>
+			<thead>
+				<tr>
+					<th>Guess</th>
+					<th>Timestamp</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for guess in guesses %}
+				<tr>
+					<td>{{guess.guess}}</td>
+					<td>{{guess.timestamp}}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</body>
+</html>

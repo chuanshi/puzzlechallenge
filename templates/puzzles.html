@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+	<head>
+		<title>CPC Simulator 2016</title>
+	</head>
+	<body>
+		<h1>CPC Simulator 2016</h1>
+		<ul>
+		{% for puzzle in puzzles %}
+		<li>
+			<a href="{{ url_for("puzzle_page", puzzle_id=puzzle.id) }}">
+				{{puzzle.name}}
+			</a>
+		</li>
+		{% endfor %}
+		</ul>
+	</body>
+</html>
