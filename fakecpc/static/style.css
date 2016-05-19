@@ -1,0 +1,16 @@
+form {
+	display: block;
+	margin-bottom: 16px;
+}
+
+form label {
+	display: block;
+}
+
+form input {
+	display: block;
+}
+
+.form-error {
+	background-color: #ffffdd;
+}

@@ -2,14 +2,25 @@
 <html>
 	<head>
 		<title>{{puzzle.name}}</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 	</head>
 	<body>
 		<h1><a href="{{url_for("puzzle_list")}}">CPC Simulator 2016</a> / {{puzzle.name}}</h1>
+		<form method="POST" action="">
+			{{ form.csrf_token }}
+			{{ form.guess.label }}
+			{{ form.guess(size=20)}}
+			{% for error in form.guess.errors %}
+				<div class="form-error">{{ error }}</div>
+			{% endfor %}
+			<button type="submit">Submit Guess</button>
+		</form>
 		<table>
 			<thead>
 				<tr>
 					<th>Guess</th>
 					<th>Timestamp</th>
+					<th>Correct?</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -17,6 +28,7 @@
 				<tr>
 					<td>{{guess.guess}}</td>
 					<td>{{guess.timestamp}}</td>
+					<td>{{guess.correct}}</td>
 				</tr>
 				{% endfor %}
 			</tbody>
