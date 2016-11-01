@@ -18,4 +18,6 @@ with open(RANDOM_FILE, "rb") as f:
 
 if __name__ == '__main__':
     app.migrate()
+    app.populate_puzzles()
+    app.populate_answers()
     app.run(debug=True)

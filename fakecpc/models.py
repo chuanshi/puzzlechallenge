@@ -4,11 +4,28 @@ from fakecpc import db
 class Puzzle(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80))
-    answer = db.Column(db.String(80))
+    #answer = db.Column(db.String(80))
     link = db.Column(db.String(768))
+    #reply = db.Column(db.String(80))
+    # answers = db.relationship("Answers",uselist=False,backref="puzzle")
 
     def __repr__(self):
         return "<Puzzle '{}'>".format(self.name)
+
+class Answers(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    puzzle_id = db.Column(db.Integer, db.ForeignKey('puzzle.id'))
+    puzzle = db.relationship('Puzzle', backref=db.backref('answers', lazy='dynamic'))
+    answer = db.Column(db.String(80))
+    correct = db.Column(db.Boolean)
+    response = db.Column(db.String(768))
+
+    def __init__(self, puzzle, answer, correctness, response):
+        self.puzzle = puzzle
+        self.answer = answer
+        self.correct = correctness
+        self.response = response
+
 
 class Guess(db.Model):
     id = db.Column(db.Integer, primary_key=True)

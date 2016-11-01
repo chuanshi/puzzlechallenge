@@ -5,14 +5,26 @@
 	</head>
 	<body>
 		<h1>CPC Simulator 2016</h1>
+		Luggage recovered: {{luggage_recovered}}
 		<ul>
 		{% for puzzle in puzzles %}
+		{% if puzzle.solved %}
+		<li>
+			<strike>
+			<a href="{{ url_for("puzzle_page", puzzle_id=puzzle.id) }}">
+				{{puzzle.name}}
+			</a>
+			</strike>
+		</li>
+		{% else %}
 		<li>
 			<a href="{{ url_for("puzzle_page", puzzle_id=puzzle.id) }}">
 				{{puzzle.name}}
 			</a>
 		</li>
+		{% endif %}
 		{% endfor %}
 		</ul>
+		* means prepuzzle: Do these first!
 	</body>
 </html>
